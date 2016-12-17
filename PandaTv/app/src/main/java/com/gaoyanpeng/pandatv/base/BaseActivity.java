@@ -14,14 +14,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         initView();
+        initThis();
         initData();
+
     }
+
+
 
     //获取布局
     protected abstract int getLayout();
 
     //绑定控件
     public abstract void initView();
+    //控件监听
+    protected abstract void initThis();
 
     //初始化数据
     protected abstract void initData();

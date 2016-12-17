@@ -1,5 +1,6 @@
 package com.gaoyanpeng.pandatv.main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 import com.gaoyanpeng.pandatv.R;
 import com.gaoyanpeng.pandatv.base.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private MainAdapter mMainAdapter;
@@ -35,12 +36,28 @@ public class MainActivity extends BaseActivity {
         mTitle = findView(R.id.main_title);
         mTitlePic = findView(R.id.main_title_pic);
         mRightPic = findView(R.id.main_right_pic);
+
+    }
+
+    @Override
+    protected void initThis() {
+        mRightPic.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         mViewPager.setAdapter(mMainAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+        //设置 TabLayout
+        getTabLayout();
+        /**
+         * 监听ViewPager当前是第几页
+         */
+       mViewPager.addOnPageChangeListener(this);
+
+    }
+
+    private void getTabLayout() {
         //设置下划线颜色
         mTabLayout.setSelectedTabIndicatorColor(0x00000000);
         //设置字体点击与不点击的颜色
@@ -53,45 +70,8 @@ public class MainActivity extends BaseActivity {
             mTab = mTabLayout.getTabAt(i);
             mTab.setIcon(MainBean.getMainBean().get(i).getImage());
         }
-        /**
-         * 监听ViewPager当前是第几页
-         */
-       mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-           @Override
-           public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-           }
-           //判断 ViewPager 当前的页数
-           @Override
-           public void onPageSelected(int position) {
-               Log.d("MainActivity", "position:" + position);
-               if (position==0){
-                   mTitlePic.setVisibility(View.VISIBLE);
-                   mTitle.setVisibility(View.GONE);
-               }else if (position==1){
-                   mTitlePic.setVisibility(View.GONE);
-                   mTitle.setVisibility(View.VISIBLE);
-                   mTitle.setText("游戏");
-               }else if (position == 2){
-                   mTitlePic.setVisibility(View.GONE);
-                   mTitle.setVisibility(View.VISIBLE);
-                   mTitle.setText("娱乐");
-               }else if (position == 3){
-                   mTitlePic.setVisibility(View.GONE);
-                   mTitle.setVisibility(View.VISIBLE);
-                   mTitle.setText("小葱秀");
-               }else if (position == 4){
-                   mTitlePic.setVisibility(View.GONE);
-                   mTitle.setVisibility(View.VISIBLE);
-                   mRightPic.setImageResource(R.drawable.settings_pressed);
-                   mTitle.setText("我的");
-               }
-           }
-           @Override
-           public void onPageScrollStateChanged(int state) {
-
-           }
-       });
     }
+
     //点击两次退出程序
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -108,5 +88,50 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+    /**
+     * 监听ViewPager当前是第几页
+     */
+    @Override
+    public void onPageSelected(int position) {
+        Log.d("MainActivity", "position:" + position);
+        if (position==0){
+            mTitlePic.setVisibility(View.VISIBLE);
+            mTitle.setVisibility(View.GONE);
+        }else if (position==1){
+            mTitlePic.setVisibility(View.GONE);
+            mTitle.setVisibility(View.VISIBLE);
+            mTitle.setText("游戏");
+        }else if (position == 2){
+            mTitlePic.setVisibility(View.GONE);
+            mTitle.setVisibility(View.VISIBLE);
+            mTitle.setText("娱乐");
+        }else if (position == 3){
+            mTitlePic.setVisibility(View.GONE);
+            mTitle.setVisibility(View.VISIBLE);
+            mTitle.setText("小葱秀");
+        }else if (position == 4){
+            mTitlePic.setVisibility(View.GONE);
+            mTitle.setVisibility(View.VISIBLE);
+            mRightPic.setImageResource(R.drawable.settings_pressed);
+            mTitle.setText("我的");
+        }
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this,SeekAty.class);
+        startActivity(intent);
     }
 }

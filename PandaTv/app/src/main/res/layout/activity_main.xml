@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/dian_40dp"
         android:paddingBottom="@dimen/dimen_3dp"
         android:paddingRight="@dimen/dian_20dp"
         android:paddingTop="@dimen/dimen_3dp">

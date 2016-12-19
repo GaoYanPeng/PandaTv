@@ -6,4 +6,5 @@
     <dimen name="dian_20dp">20dp</dimen>
     <dimen name="dian_40dp">40dp</dimen>
     <dimen name="dian_10dp">10dp</dimen>
+    <dimen name="dian_5dp">5dp</dimen>
 </resources>

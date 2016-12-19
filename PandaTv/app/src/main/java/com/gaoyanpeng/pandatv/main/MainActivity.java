@@ -10,15 +10,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.gaoyanpeng.pandatv.R;
 import com.gaoyanpeng.pandatv.base.BaseActivity;
+import com.gaoyanpeng.pandatv.set.SettingAty;
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private MainAdapter mMainAdapter;
     private TextView mTitle;
-    private ImageView mTitlePic,mRightPic;
+    private ImageView mTitlePic, mRightPic, mRightSetting;
     //定义当前的时间
     private long firstTime = 0;
     private TabLayout.Tab mTab;
@@ -36,6 +38,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mTitle = findView(R.id.main_title);
         mTitlePic = findView(R.id.main_title_pic);
         mRightPic = findView(R.id.main_right_pic);
+        mRightSetting = findView(R.id.main_right_setting);
 
     }
 
@@ -53,7 +56,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         /**
          * 监听ViewPager当前是第几页
          */
-       mViewPager.addOnPageChangeListener(this);
+        mViewPager.addOnPageChangeListener(this);
 
     }
 
@@ -94,32 +97,41 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
+
     /**
      * 监听ViewPager当前是第几页
      */
     @Override
     public void onPageSelected(int position) {
         Log.d("MainActivity", "position:" + position);
-        if (position==0){
+        if (position == 0) {
             mTitlePic.setVisibility(View.VISIBLE);
             mTitle.setVisibility(View.GONE);
-        }else if (position==1){
+        } else if (position == 1) {
             mTitlePic.setVisibility(View.GONE);
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("游戏");
-        }else if (position == 2){
+        } else if (position == 2) {
             mTitlePic.setVisibility(View.GONE);
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("娱乐");
-        }else if (position == 3){
+        } else if (position == 3) {
             mTitlePic.setVisibility(View.GONE);
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("小葱秀");
-        }else if (position == 4){
+        } else if (position == 4) {
             mTitlePic.setVisibility(View.GONE);
             mTitle.setVisibility(View.VISIBLE);
-            mRightPic.setImageResource(R.drawable.settings_pressed);
+            mRightPic.setVisibility(View.GONE);
+            mRightSetting.setVisibility(View.VISIBLE);
             mTitle.setText("我的");
+            mRightSetting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, SettingAty.class);
+                    startActivity(intent);
+                }
+            });
         }
 
     }
@@ -131,7 +143,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this,SeekAty.class);
+
+        Intent intent = new Intent(this, SeekAty.class);
         startActivity(intent);
     }
 }

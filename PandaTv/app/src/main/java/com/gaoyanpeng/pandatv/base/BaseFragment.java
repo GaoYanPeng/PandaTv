@@ -17,7 +17,6 @@ public abstract  class BaseFragment extends Fragment {
 
     protected Context mContext;
     //这里主要目的就是获取content对象
-
     /**
      * 自己手动覆写onAttach()方法 覆写参数是context的
      * @param context
@@ -40,9 +39,6 @@ public abstract  class BaseFragment extends Fragment {
 
         initView();
     }
-
-
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

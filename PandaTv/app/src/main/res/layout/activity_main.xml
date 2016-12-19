@@ -35,12 +35,20 @@
             android:visibility="gone"/>
 
         <ImageView
-            android:id="@+id/main_right_pic"
+        android:id="@+id/main_right_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/shouye_icon_search"/>
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/main_right_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/shouye_icon_search"/>
+            android:src="@drawable/settings_pressed"/>
 
     </RelativeLayout>
 

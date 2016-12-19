@@ -5,5 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorDarkBlue">#080d2b</color>
     <color name="colorGrayLine">#5ff5cd</color>
+    <color name="colorGrayLineX">#f4f4f4</color>
     <color name="colorTextGrayLine">#5a605b</color>
+    <color name="colorTextGrayLineT">#2ed29c</color>
 </resources>

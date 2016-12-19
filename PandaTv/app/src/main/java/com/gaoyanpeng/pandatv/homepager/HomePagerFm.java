@@ -1,5 +1,8 @@
 package com.gaoyanpeng.pandatv.homepager;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+
 import com.gaoyanpeng.pandatv.R;
 import com.gaoyanpeng.pandatv.base.BaseFragment;
 
@@ -15,6 +18,9 @@ public class HomePagerFm extends BaseFragment {
 
     @Override
     protected void initView() {
+        TabLayout mTab = getFindView(R.id.home_tab);
+        ViewPager mVp = getFindView(R.id.home_vp);
+
 
     }
 
